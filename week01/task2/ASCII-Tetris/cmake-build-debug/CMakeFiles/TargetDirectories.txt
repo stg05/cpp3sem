@@ -1,0 +1,3 @@
+C:/Users/stg05/CLionProjects/labs3sem/week01/task2/ASCII-Tetris/cmake-build-debug/CMakeFiles/task2.dir
+C:/Users/stg05/CLionProjects/labs3sem/week01/task2/ASCII-Tetris/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/stg05/CLionProjects/labs3sem/week01/task2/ASCII-Tetris/cmake-build-debug/CMakeFiles/rebuild_cache.dir

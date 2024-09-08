@@ -1,0 +1,17 @@
+1) Препроцессор
+
+g++ -E main.cpp -o main_pre.cpp
+
+2) Компиляция объектного файла
+
+g++ -c main.cpp -o main.o
+
+Дизассембл:
+objdump -S --disassemble main.o
+
+3) Линковка
+ld -- линковщик
+
+1.o --->  \
+2.o --->   } ---> main.exe
+3.o --->  /
