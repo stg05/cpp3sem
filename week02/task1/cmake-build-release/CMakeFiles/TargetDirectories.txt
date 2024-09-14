@@ -1,3 +1,0 @@
-C:/Users/stg05/CLionProjects/labs3sem/week02/task1/cmake-build-release/CMakeFiles/edit_cache.dir
-C:/Users/stg05/CLionProjects/labs3sem/week02/task1/cmake-build-release/CMakeFiles/main.dir
-C:/Users/stg05/CLionProjects/labs3sem/week02/task1/cmake-build-release/CMakeFiles/rebuild_cache.dir
