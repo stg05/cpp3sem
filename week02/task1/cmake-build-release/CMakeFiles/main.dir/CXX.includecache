@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/stg05/CLionProjects/labs3sem/week02/task1/include/params.h
+
+C:/Users/stg05/CLionProjects/labs3sem/week02/task1/include/transformations.h
+vec3.h
+C:/Users/stg05/CLionProjects/labs3sem/week02/task1/include/vec3.h
+params.h
+C:/Users/stg05/CLionProjects/labs3sem/week02/task1/include/params.h
+
+C:/Users/stg05/CLionProjects/labs3sem/week02/task1/include/utils.h
+transformations.h
+C:/Users/stg05/CLionProjects/labs3sem/week02/task1/include/transformations.h
+
+C:/Users/stg05/CLionProjects/labs3sem/week02/task1/include/vec3.h
+string
+-
+
+C:/Users/stg05/CLionProjects/labs3sem/week02/task1/src/transformations.cpp
+../include/transformations.h
+C:/Users/stg05/CLionProjects/labs3sem/week02/task1/include/transformations.h
+
+C:/Users/stg05/CLionProjects/labs3sem/week02/task1/src/utils.cpp
+fstream
+-
+iostream
+-
+../include/utils.h
+C:/Users/stg05/CLionProjects/labs3sem/week02/task1/include/utils.h
+

@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/stg05/CLionProjects/labs3sem/week01/task2/ASCII-Tetris/main.c
+stdio.h
+-
+stdlib.h
+-
+tetris.h
+C:/Users/stg05/CLionProjects/labs3sem/week01/task2/ASCII-Tetris/tetris.h
+
+C:/Users/stg05/CLionProjects/labs3sem/week01/task2/ASCII-Tetris/tetris.c
+stdio.h
+-
+stdlib.h
+-
+tetris.h
+C:/Users/stg05/CLionProjects/labs3sem/week01/task2/ASCII-Tetris/tetris.h
+termios.h
+-
+signal.h
+-
+time.h
+-
+fcntl.h
+-
+
+C:/Users/stg05/CLionProjects/labs3sem/week01/task2/ASCII-Tetris/tetris.h
+
