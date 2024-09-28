@@ -111,14 +111,24 @@ vec3 vec3::operator^(const vec3 &param) const {
                 m_x * param.m_y - m_y * param.m_x};
 }
 
-std::string print_color(color param) {
-    return std::to_string(int(param.x() * 255.999)) + " " +
-           std::to_string(int(param.y() * 255.999)) + " " +
-           std::to_string(int(param.z() * 255.999));
+void vec3::operator*=(double alpha) {
+    m_x *= alpha;
+    m_y *= alpha;
+    m_z *= alpha;
 }
 
-vec3 operator*(double alpha, vec3 vec) {
-    return vec3{alpha * vec.x(),
-                alpha * vec.y(),
-                alpha * vec.z()};
+vec3 vec3::normalized() const {
+    return {m_x / length(), m_y / length(), m_z / length()};
+}
+
+vec3 operator*(const vec3 vec, double alpha) {
+    vec3 copy = vec;
+    copy *= alpha;
+    return copy;
+}
+
+vec3 operator*(double alpha, const vec3 vec) {
+    vec3 copy = vec;
+    copy *= alpha;
+    return copy;
 }

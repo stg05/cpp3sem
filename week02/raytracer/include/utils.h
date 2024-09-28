@@ -7,8 +7,8 @@
 
 #include "transformations.h"
 
-void write_image(std::ofstream& os);
+void write_image(std::ofstream &os, scene &s);
 
-void write_color(std::ostream& out, const color& pixel_color);
+void write_color(std::ostream &out, const color &pixel_color);
 
 #endif //MAIN_UTILS_H

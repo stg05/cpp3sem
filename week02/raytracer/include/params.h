@@ -14,3 +14,7 @@
 #ifndef HEIGHT
 #define HEIGHT 320
 #endif
+
+#ifndef RATIO
+#define RATIO (16.0/9.0)
+#endif

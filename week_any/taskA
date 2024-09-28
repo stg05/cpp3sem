@@ -1,0 +1,120 @@
+
+=================================================
+|                    TASK A                     |
+=================================================
+
+
+class Counter {
+private:
+    int init;
+    int counter;
+public:
+    explicit Counter(int initial) : init{initial}, counter{initial} {
+
+    }
+
+    void reset() {
+        counter = init;
+    }
+
+    int next() {
+        return counter++;
+    }
+};
+
+
+=================================================
+|                    TASK B                     |
+=================================================
+
+
+class Segment {
+private:
+    int m_begin = 0, m_end = -1;
+public:
+    Segment(int begin, int end);
+
+    explicit Segment(int o);
+
+    Segment();
+
+    bool contains(int p) const;
+
+    void shift(int m);
+};
+
+Segment::Segment(int begin, int end) {
+    if (begin <= end) {
+        m_begin = begin;
+        m_end = end;
+    }
+}
+
+Segment::Segment(int o) : Segment(o, o) {}
+
+Segment::Segment() {}
+
+void Segment::shift(int m) {
+    m_begin += m;
+    m_end += m;
+}
+
+bool Segment::contains(int p) const{
+    return (p <= m_end) && (p >= m_begin);
+}
+
+
+=================================================
+|                    TASK C                     |
+=================================================
+
+
+Point::Point(float x_p, float y_p) : x{x_p}, y{y_p} {}
+
+Triangle::Triangle(Point A_p, Point B_p, Point C_p) : A{A_p}, B{B_p}, C{C_p} {}
+
+float Triangle::area() const {
+    return std::abs((B.x - A.x) * (C.y - A.y) - (C.x - A.x) * (B.y - A.y)) / 2;
+}
+
+
+=================================================
+|                    TASK D                     |
+=================================================
+
+
+#include <algorithm>
+
+class Rectangle {
+private:
+    int const m_x, m_y;
+public:
+    Rectangle(int x, int y);
+
+    Rectangle intersect(Rectangle const &r) const;
+
+    Rectangle enclose(Rectangle const &r) const;
+
+    Point as_point() const;
+};
+
+Rectangle::Rectangle(int x, int y) : m_x{x}, m_y{y} {}
+
+Rectangle Rectangle::intersect(const Rectangle &r) const{
+    return {std::min(m_x, r.m_x), std::min(m_y, r.m_y)};
+}
+
+Rectangle Rectangle::enclose(const Rectangle &r) const{
+    return {std::max(m_x, r.m_x), std::max(m_y, r.m_y)};
+}
+
+Point Rectangle::as_point() const {
+    return {m_x, m_y};
+}
+
+
+=================================================
+|                    TASK E                     |
+=================================================
+
+

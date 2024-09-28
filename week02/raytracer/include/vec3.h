@@ -50,12 +50,16 @@ public:
 
     vec3 operator^(const vec3 &param) const;
 
+    void operator*=(double alpha);
+
+    vec3 normalized() const;
+
 private:
     double m_x{0}, m_y{0}, m_z{0};
 };
 
-using color = vec3;
 
-std::string print_color(color param);
 
-vec3 operator*(double alpha, vec3 param);
+
+vec3 operator*(double alpha, const vec3 param);
+vec3 operator*(const vec3 param, double alpha);

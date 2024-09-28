@@ -8,7 +8,7 @@
 int main() {
     std::string path("my_image.ppm");
     std::ofstream os(path);
-    write_image(os);
-
+    scene s;
+    write_image(os, s);
     return 0;
 }
