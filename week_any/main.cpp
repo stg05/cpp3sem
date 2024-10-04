@@ -1,68 +1,91 @@
-#include <cstdint>
-
-
-class CompactSet {
-    uint64_t set;
-    int const min;
+/** Объявление класса Function **/
+class Function {
 public:
-    explicit CompactSet(int min);
+    virtual double operator()(double) const = 0;
 
-    CompactSet();
-
-    bool ensure(int x);
-
-    bool remove(int x);
-
-    bool is_empty() const;
-
-    bool contains(int x) const;
+    virtual ~Function() {}
 };
 
-CompactSet::CompactSet(int min_p) : set{0}, min{min_p} {}
-
-CompactSet::CompactSet() : CompactSet(0) {}
-
-bool CompactSet::contains(int const x) const {
-    if (x < min + 64) {
-        if ((set >> (x - min)) == 1) {
-            return true;
-        }
+/** Объявление функций dichotomy_any, make_linear_function, make_quadratic_function, delete_function **/
+double dichotomy_any(double left, double right, Function const &f, double tolerance) {
+    double result = .5f * left + .5f * right;
+    if (f(result) > tolerance) {
+        return dichotomy_any(left, result, f, tolerance);
+    } else if (f(result) < -tolerance) {
+        return dichotomy_any(result, right, f, tolerance);
+    } else {
+        return result;
     }
-    return false;
 }
 
-bool CompactSet::is_empty() const {
-    return set == 0u;
-}
+class LinearFunction : public Function {
 
-bool CompactSet::ensure(int x) {
-    bool res = !contains(x);
-    if (res) {
-        if (x < min + 64) {
-            set += (1 << (x - min));
-        }
+public:
+    LinearFunction() = default;
+
+    LinearFunction(double a1, double a2) : LinearFunction() {
+        k = a1;
+        b = a2;
     }
-    return res;
-}
 
-bool CompactSet::remove(int x) {
-    bool res = contains(x);
-    if (res) {
-        if (x < min + 64) {
-            set -= (1 << (x - min));
-        }
+    double operator()(double x) const override {
+        return k * x + b;
     }
-    return res;
+
+
+private:
+    double k = 0.f, b = 0.f;
+};
+
+LinearFunction *make_linear_function(double k, double b) {
+    auto *lf = new LinearFunction{k, b};
+    return lf;
 }
 
+class QuadraticFunction : public Function {
 
-#include <iostream>
-#include <cassert>
+public:
+    QuadraticFunction() = default;
+
+    QuadraticFunction(double a1, double a2, double a3) : QuadraticFunction() {
+        a = a1;
+        b = a2;
+        c = a3;
+    }
+
+    double operator()(double x) const override {
+        return a * x * x + b * x + c;
+    }
+
+private:
+    double a = 0.f, b = 0.f, c = 0.f;
+};
+
+QuadraticFunction *make_quadratic_function(double a, double b, double c) {
+    auto *qf = new QuadraticFunction{a, b, c};
+    return qf;
+}
+
+void delete_function(Function *f) {
+    delete f;
+}
+
+bool close(double a, double b, double tolerance) {
+    return a - tolerance < b and a + tolerance > b;
+}
+
+#include<cassert>
 
 int main() {
-    CompactSet set(-1024);
-    set.ensure(-1023);
-    std::cout << set.contains(-1024) << std::endl;
+    Function *f1 = make_linear_function(1., 1.);
+    auto f1_root = dichotomy_any(-10., 10., *f1, 0.001);
+    assert(close(f1_root, -1., 0.001));
+    delete_function(f1);
+
+    Function *f2 = make_quadratic_function(1., 0., -1.);
+    auto f2_root = dichotomy_any(0., 2., *f2, 0.001);
+    assert(close(f2_root, 1., 0.001));
+    delete_function(f2);
 
     return 0;
 }

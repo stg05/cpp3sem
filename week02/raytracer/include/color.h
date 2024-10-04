@@ -5,8 +5,6 @@
 #ifndef MAIN_COLOR_H
 #define MAIN_COLOR_H
 
-#endif //MAIN_COLOR_H
-
 #include "vec3.h"
 
 using color = vec3;
@@ -20,3 +18,5 @@ namespace colors {
     const inline color GREEN{0., 1., 0.};
     const inline color BLUE{0., 0., 1.};
 }
+
+#endif //MAIN_COLOR_H

@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.20)
 
 project(main)
 
-set(SOURCES main.cpp ../lab01/main.cpp)
+set(-DCMAKE_BUILD_TYPE Debug)
+set(SOURCES main.cpp)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS -Wall)
 

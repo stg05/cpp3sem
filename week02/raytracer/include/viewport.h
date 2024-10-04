@@ -6,14 +6,12 @@
 #ifndef MAIN_VIEWPORT_H
 #define MAIN_VIEWPORT_H
 
-#endif //MAIN_VIEWPORT_H
-
 class viewport {
 
 public:
     viewport();
 
-    viewport(vec3 focal_vec);
+    explicit viewport(vec3 focal_vec);
 
     vec3 get_center() const;
 
@@ -27,3 +25,13 @@ private:
     vec3 m_u = {1, 0, 0},
             m_v = {0, -1, 0};
 };
+
+class rectangular_viewport : public viewport {
+
+};
+
+class spherical_viewport : public viewport {
+
+};
+
+#endif //MAIN_VIEWPORT_H

@@ -7,12 +7,12 @@
 #include <cmath>
 
 
-color gradient_vertical(const color &color_start, const color &color_end,
-                        unsigned int x, unsigned int y) {
-    double y_rel = ((double) y) / HEIGHT;
-
-    return ((1.0 - y_rel) * color_start) + ((y_rel) * color_end);
-}
+//color gradient_vertical(const color &color_start, const color &color_end,
+//                        unsigned int x, unsigned int y) {
+//    double y_rel = ((double) y) / HEIGHT;
+//
+//    return ((1.0 - y_rel) * color_start) + ((y_rel) * color_end);
+//}
 
 color gradient_horizontal(const color &color_start, const color &color_end,
                           unsigned int x, unsigned int y) {
@@ -40,19 +40,13 @@ color color2bw(const color &param) {
     return color{avg, avg, avg};
 }
 
-//color ray_color(const ray &r, const scene &s) {
-//    vec3 unit_direction = r.get_dir().normalized();
-//    auto a = 0.5 * (unit_direction.y() + 1.0);
-//    return (1.0 - a) * color(1.0, 1.0, 1.0) + a * color(0.5, 0.7, 1.0);
-//}
-
 color ray_color(const ray &r, const scene &s) {
-    vec3 unit_direction = r.get_dir().normalized();
+    vec3 unit_direction = r.get_dir().e();
     auto a = acos(unit_direction * vec3{0., 0, -1})/M_PI*2;
     if(int(180.0*a)%10 < 1){
         return colors::BLACK;
     }else{
-        return colors::WHITE;
+        return s.background(r);
     }
     //return linear_fall_gradient(colors::GREEN, colors::RED, a);
 }

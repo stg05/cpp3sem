@@ -19,8 +19,8 @@ viewport::viewport() {
 
 viewport::viewport(vec3 focal_vec) : viewport() {
     center = focal_vec;
-    m_u = (focal_vec ^ vec3{0, 1, 0}).normalized() * m_width;
-    m_v = (focal_vec ^ m_u).normalized() * m_height;
+    m_u = (focal_vec ^ vec3{0, 1, 0}).e() * m_width;
+    m_v = (focal_vec ^ m_u).e() * m_height;
 }
 
 vec3 viewport::get_center() const {

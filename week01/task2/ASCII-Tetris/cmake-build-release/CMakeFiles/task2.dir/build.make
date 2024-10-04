@@ -91,7 +91,7 @@ CMakeFiles/task2.dir/tetris.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/task2.dir/tetris.c.s"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\stg05\CLionProjects\labs3sem\week01\task2\ASCII-Tetris\tetris.c -o CMakeFiles\task2.dir\tetris.c.s
 
-# Object files for target task2
+# object files for target task2
 task2_OBJECTS = \
 "CMakeFiles/task2.dir/main.c.obj" \
 "CMakeFiles/task2.dir/tetris.c.obj"

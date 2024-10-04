@@ -7,8 +7,6 @@
 #ifndef MAIN_RAY_H
 #define MAIN_RAY_H
 
-#endif //MAIN_RAY_H
-
 class ray {
 public:
     ray() = default;
@@ -19,10 +17,12 @@ public:
 
     vec3 at(double t);
 
-    vec3 get_pivot() const;
+    [[nodiscard]] vec3 get_pivot() const;
 
-    vec3 get_dir() const;
+    [[nodiscard]] vec3 get_dir() const;
 
 private:
     vec3 m_pivot{0,0,0}, m_dir{0,0,0};
 };
+
+#endif //MAIN_RAY_H

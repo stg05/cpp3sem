@@ -117,8 +117,12 @@ void vec3::operator*=(double alpha) {
     m_z *= alpha;
 }
 
-vec3 vec3::normalized() const {
+vec3 vec3::e() const {
     return {m_x / length(), m_y / length(), m_z / length()};
+}
+
+vec3::operator double() const {
+    return length();
 }
 
 vec3 operator*(const vec3 vec, double alpha) {
