@@ -7,6 +7,7 @@
 
 #include "viewport.h"
 #include "object.h"
+#include <list>
 
 class scene {
 public:
@@ -14,13 +15,15 @@ public:
 
     viewport v{vec3{1, 0, 0} * 0.05};
 
-    int width() const;
+    std::list<object*> objects{};
 
-    int height() const;
+    [[nodiscard]] int width() const;
 
-    ray cds_to_ray(unsigned x, unsigned y) const;
+    [[nodiscard]] int height() const;
 
-    color background(const ray &r) const;
+    [[nodiscard]] ray coords_to_ray(unsigned x, unsigned y) const;
+
+    [[nodiscard]] color background(const ray &r) const;
 
 private:
     int m_width, m_height;

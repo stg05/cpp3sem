@@ -24,10 +24,10 @@ color linear_fall_gradient(const color &c1, const color &c2, double alpha) {
     auto first_share = c1.length() / (c1.length() + c2.length());
     if (alpha < first_share) {
         auto beta = alpha / first_share;
-        return (1-beta) * c1 + beta * colors::BLACK;
+        return (1 - beta) * c1 + beta * colors::BLACK;
     } else {
         auto beta = (alpha - first_share) / (1 - first_share);
-        return (1-beta) * colors::BLACK + (beta) * c2;
+        return (1 - beta) * colors::BLACK + (beta) * c2;
     }
 }
 
@@ -41,12 +41,18 @@ color color2bw(const color &param) {
 }
 
 color ray_color(const ray &r, const scene &s) {
-    vec3 unit_direction = r.get_dir().e();
-    auto a = acos(unit_direction * vec3{0., 0, -1})/M_PI*2;
-    if(int(180.0*a)%10 < 1){
-        return colors::BLACK;
-    }else{
-        return s.background(r);
+    hit_record hr{};
+    for(const auto* iter : s.objects){
+        if (iter->hit(r, 0, 10000.0, hr)) {
+            return color{.5, .5, .5} + 0.5*hr.normal();
+        }
     }
+
+    vec3 unit_direction = r.get_dir().e();
+    auto a = acos(unit_direction * vec3{0., 0, -1}) / M_PI * 2;
+    if (int(180.0 * a) % 10 < 1) {
+        return colors::BLACK;
+    }
+    return s.background(r);
     //return linear_fall_gradient(colors::GREEN, colors::RED, a);
 }

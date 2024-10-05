@@ -19,7 +19,7 @@ int scene::height() const {
     return m_height;
 }
 
-ray scene::cds_to_ray(unsigned int x, unsigned int y) const {
+ray scene::coords_to_ray(unsigned int x, unsigned int y) const {
     return {v.get_center() + (double(x) / m_width - .5) * v.get_u() + (double(y) / m_height - .5) * v.get_v()};
 }
 

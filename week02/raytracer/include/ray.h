@@ -22,7 +22,22 @@ public:
     [[nodiscard]] vec3 get_dir() const;
 
 private:
-    vec3 m_pivot{0,0,0}, m_dir{0,0,0};
+    vec3 m_pivot{0, 0, 0}, m_dir{0, 0, 0};
+};
+
+class hit_record {
+public:
+    hit_record() = default;
+
+    void set_face_normal(const ray &, const vec3 &outward_normal);
+
+    [[nodiscard]] vec3 normal() const;
+
+private:
+    vec3 m_intersection;
+    vec3 m_normal;
+    double t{0};
+    bool m_front_face = false;
 };
 
 #endif //MAIN_RAY_H
