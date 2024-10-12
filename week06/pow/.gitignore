@@ -1,0 +1,6 @@
+*/.idea
+*.o
+*.exe
+*.a
+*/cmake-build-debug/
+*/cmake-build-release/
