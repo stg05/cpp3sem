@@ -40,14 +40,25 @@ color color2bw(const color &param) {
     return color{avg, avg, avg};
 }
 
-color ray_color(const ray &r, const scene &s) {
+color ray_color(const ray &r, const scene &s, double t_min, double t_max) {
     hit_record hr{};
-    for(const auto* iter : s.objects){
-        if (iter->hit(r, 0, 10000.0, hr)) {
-            return color{.5, .5, .5} + 0.5*hr.normal();
+    hit_record *best_hr = nullptr;
+
+    for (const auto *iter: s.objects) {
+        if (iter->hit(r, t_min, t_max, hr)) {
+            if(best_hr == nullptr){
+                best_hr = &hr;
+            }else{
+                if(best_hr->get_t() > hr.get_t()){
+                    best_hr = &hr;
+                }
+            }
         }
     }
 
+    if(best_hr != nullptr){
+        return color{.5, .5, .5} + 0.5 * hr.normal();
+    }
     vec3 unit_direction = r.get_dir().e();
     auto a = acos(unit_direction * vec3{0., 0, -1}) / M_PI * 2;
     if (int(180.0 * a) % 10 < 1) {

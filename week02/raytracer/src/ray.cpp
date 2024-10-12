@@ -23,3 +23,7 @@ void hit_record::set_face_normal(const ray &r, const vec3 &outward_normal) {
 vec3 hit_record::normal() const {
     return m_normal;
 }
+
+double hit_record::get_t() {
+    return t;
+}

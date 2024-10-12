@@ -21,6 +21,6 @@ color invert_color(const color &);
 
 color color2bw(const color &);
 
-color ray_color(const ray &, const scene &s);
+color ray_color(const ray &, const scene &s, double t_min = 0, double t_max = 10000);
 
 #endif //MAIN_TRANSFORMATIONS_H

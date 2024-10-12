@@ -6,7 +6,7 @@
 #ifndef MAIN_VIEWPORT_H
 #define MAIN_VIEWPORT_H
 
-class viewport {
+class   viewport {
 
 public:
     viewport();

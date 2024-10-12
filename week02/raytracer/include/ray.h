@@ -31,6 +31,8 @@ public:
 
     void set_face_normal(const ray &, const vec3 &outward_normal);
 
+    double get_t();
+
     [[nodiscard]] vec3 normal() const;
 
 private:
