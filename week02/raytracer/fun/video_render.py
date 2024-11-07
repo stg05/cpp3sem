@@ -2,7 +2,7 @@ import os
 
 import cv2
 
-img1 = cv2.imread(r'C:\Users\stg05\CLionProjects\labs3sem\week02\raytracer\cmake-build-release\out\f1.ppm')
+img1 = cv2.imread(r'C:/Users/stg05/CLionProjects/labs3sem/week02/raytracer/cmake-build-release/out/f1.ppm')
 height, width, layers = img1.shape
 
 video = cv2.VideoWriter(filename='video.mp4', fourcc=-1, frameSize=(width, height),
