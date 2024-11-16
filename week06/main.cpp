@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 
 template <typename T, unsigned Dimension>
 class Grid;
@@ -44,7 +45,7 @@ public:
         }
     }
 
-    T &operator[](size_type rhs)
+    const T &operator[](size_type rhs)
     {
         if ((rhs < 0) || (rhs >= dim_size))
             throw std::out_of_range("Out of bounds");
@@ -73,7 +74,7 @@ private:
 
 public:
     template <typename First, typename... Rest>
-    Grid(First first, Rest... rest) : dim_size{first}
+    Grid(const First first, const Rest... rest) : dim_size{(size_type)first}
     {
         m_subgrids = static_cast<Grid<T, Dimension - 1> **>(::operator new(sizeof(Grid<T, Dimension - 1>) * first));
         for (size_type i = 0; i < first; i++)
@@ -110,15 +111,16 @@ public:
 
     Grid<T, Dimension> &operator=(Grid<T, Dimension> &rhs)
     {
-            
+        return rhs;
     }
     Grid<T, Dimension> &operator=(Grid<T, Dimension> &&rhs)
     {
+        return rhs;
     }
 
     // Copying operator
 
-    Grid<T, Dimension - 1> &operator[](size_type rhs)
+    Grid<T, Dimension - 1> &operator[] (size_type rhs) const
     {
         if ((rhs < 0) || (rhs >= dim_size))
             throw std::out_of_range("Out of bounds");
@@ -174,10 +176,13 @@ public:
 
 int main()
 {
-    Grid<int, 3> g(2u, 1U, 2U, 200);
-    int i = 0;
-    Grid<int, 1> g2(100);
-    // auto g2(g);
-    std::cout << "HII" << " " << g2[0] << std::endl;
+    Grid<float, 3> const g3(2, 3, 4, 1.00f);
+    assert(1.0f == g3[1][1][1]);
+
+    Grid<float, 2> g2(2, 5, 2.0f);
+    assert(2.0f == g2[1][1]);
+
+    g2 = g3[1];
+    assert(2.0f == g2[1][1]);
     return 0;
 }
