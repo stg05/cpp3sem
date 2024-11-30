@@ -10,23 +10,27 @@ sphere::sphere(double x, double y, double z, double r) : object(), m_center{x, y
 
 sphere::sphere(vec3 center, double r) : object(), m_center{center}, m_r{r} {}
 
-bool sphere::hit(const ray &r, double ray_tmin, double ray_tmax, hit_record &record) const {
+bool sphere::hit(const ray &r, interval scope, hit_record &record) const
+{
     vec3 delta = m_center - r.get_pivot();
     vec3 dir = r.get_dir();
     vec3 proj = (delta * dir.e()) * (dir.e());
     vec3 delta_per = delta - proj;
     bool result = (double(delta_per) < m_r);
-    if (!result) {
+    if (!result)
+    {
         return false;
     }
     double offset_from_center = std::sqrt(m_r * m_r - delta_per.length_squared());
     vec3 intersection = proj - offset_from_center * dir.e();
-    if ((double(intersection) > ray_tmax) || (double(intersection) < ray_tmin)) {
+    if (!scope(double(intersection)) || (intersection * dir < 0))
+    {
         return false;
-    } else {
+    }
+    else
+    {
         vec3 normal_vec = (intersection - m_center).e();
         record.set_face_normal(r, normal_vec);
         return true;
     }
 }
-
