@@ -43,7 +43,7 @@ color color2bw(const color &param) {
 color ray_color(const ray &r, const scene &s) {
     hit_record hr{};
     for(const auto* iter : s.objects){
-        if (iter->hit(r, 0, 10000.0, hr)) {
+        if (iter->hit(r, interval{0, 10000}, hr)) {
             return color{.5, .5, .5} + 0.5*hr.normal();
         }
     }
