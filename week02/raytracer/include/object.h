@@ -6,7 +6,7 @@
 
 #include "ray.h"
 
-/** General passive object included in scene 
+/** General passive object included in scene \n
  * e.g: refractors, mat objects, mirrors */
 class object {
 public:
@@ -15,7 +15,7 @@ public:
     virtual ~object() = default;
 
     [[nodiscard]] virtual bool
-    hit(const ray &r, interval scope, hit_record &record) const = 0;
+    hit(const ray &r, double ray_tmin, double ray_tmax, hit_record &record) const = 0;
 };
 
 class sphere : public object {
@@ -24,7 +24,7 @@ public:
 
     sphere(vec3, double);
 
-    [[nodiscard]] bool hit(const ray &r, interval scope, hit_record &record) const override;
+    [[nodiscard]] bool hit(const ray &r, double ray_tmin, double ray_tmax, hit_record &record) const override;
 
 private:
     vec3 m_center{0, 0, 0};

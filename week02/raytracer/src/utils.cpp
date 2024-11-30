@@ -25,13 +25,12 @@ void write_color(std::ostream &out, const color &pixel_color) {
 }
 
 sequence_renderer::sequence_renderer() {
-    //std::string command = "cd " + path + "&& rm *.* /q /s";
-    std::string command = "find ./out/ -type f -name 'f*' -delete";
+    std::string command = "cd " + path + "&& del *.* /q /s";
     system(command.c_str());
 }
 
 void sequence_renderer::render_frame(const scene &s) const {
-    std::string file_path("./out/f" + std::to_string(frame_counter) + ".ppm");
+    std::string file_path(path + "\\f" + std::to_string(frame_counter) + ".ppm");
     frame_counter++;
     std::ofstream os(file_path);
     write_image(os, s);

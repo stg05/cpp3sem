@@ -1,18 +1,14 @@
 import os
-import time
+
 import cv2
 
-img1 = cv2.imread(r'/home/tunaspb/vscode/cpp3sem/build/out/f1.ppm')
+img1 = cv2.imread(r'C:/Users/stg05/CLionProjects/labs3sem/week02/raytracer/cmake-build-release/out/f1.ppm')
 height, width, layers = img1.shape
 
-path = '/home/tunaspb/vscode/cpp3sem/build/out/'
-path_vid = '/home/tunaspb/vscode/cpp3sem/build/vid/'
-
-cc4 = cv2.VideoWriter_fourcc(*'mp4v')
-video = cv2.VideoWriter(filename=path_vid+time.asctime(time.localtime())+'.mp4', fourcc=cc4, frameSize=(width, height),
+video = cv2.VideoWriter(filename='video.mp4', fourcc=-1, frameSize=(width, height),
                         fps=30)
 
-
+path = '../cmake-build-release/out/'
 filenames = []
 for i in range(1, 1+len(os.listdir(path))):
     filenames.append('f' + str(i) + '.ppm')

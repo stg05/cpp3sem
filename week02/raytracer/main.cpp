@@ -8,11 +8,8 @@ int main()
     scene s;
     sphere sph{10, 0, 0, 2};
     sphere sph2{0, 0, -10, 2};
-    sphere sph3{0, -100, 0, 99};
     s.objects.push_front(&sph);
     s.objects.push_front(&sph2);
-    s.objects.push_front(&sph3);
-
     for (double i = 5.0; i > 0.5; i /= 1.05)
     {
         s.v = viewport{vec3{1, 0, 0} * i};
